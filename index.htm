@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Customer account Informatiom </title>
+<script type="text/javascript">
+var http=false;
+if(navigator.appName=="Mirosoft Internet Explorer")
+{
+http= new ActiveOXobject("Microsoft.XMlHTTP");
+}
+else
+{
+http=new XMLHttpRequest();
+}
+
+function validate()
+{
+var sid=document.getElementById('txtCustomerId').value;
+var bid=document.getElementById('test').value;
+http.abort();
+http.open("GET","GetCustomerData.php?name="+bid+"&id="+sid,true);
+http.onreadystatechange=function(){
+if(http.readyState==4){
+document.getElementById('divCustomerInfo').innerHTML=http.responseText
+}
+}
+http.send(null);
+}
+</script>
+</head>
+<body>
+    <p>Enter customer ID number to retrieve information:</p>
+    <p>Customer ID: <input type="text" id="txtCustomerId" value="" onkeyup="validate()" /></p>
+	<p>Name: <input type="text" id="test" value="" /></p>
+    <p><input type="button" value="Get Customer Info"  /></p>
+    <div id="divCustomerInfo"></div>
+</body>
+</html>
+</head>
+
+<body>
+</body>
+</html>
